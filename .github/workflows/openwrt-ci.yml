@@ -88,19 +88,14 @@ jobs:
           # 
 
           # 编译x64固件:
-           cat >> .config <<EOF
+          cat >> .config <<EOF
           CONFIG_TARGET_bcm53xx_DEVICE_phicomm-k3=y
-
           CONFIG_TARGET_PROFILE="DEVICE_phicomm-k3"
-
           CONFIG_DEFAULT_k3screenctrl=y
-
           CONFIG_DEFAULT_k3wifi=y
-
           CONFIG_PACKAGE_k3wifi=y
-
           CONFIG_PACKAGE_k3screenctrl=y
-           EOF
+          EOF
 
           # 固件压缩:
           # cat >> .config <<EOF
