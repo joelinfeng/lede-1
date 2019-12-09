@@ -53,48 +53,31 @@ jobs:
         run: |
           rm -f ./.config*
           touch ./.config
-
-          #
-          # ========================固件定制部分========================
-          # 
-
-          # 
-          # 如果不对本区块做出任何编辑, 则生成默认配置固件. 
-          # 
-
-          # 以下为定制化固件选项和说明:
-          #
-
-          #
-          # 有些插件/选项是默认开启的, 如果想要关闭, 请参照以下示例进行编写:
-          # 
-          #          =========================================
-          #         |  # 取消编译VMware镜像:                   |
-          #         |  cat >> .config <<EOF                   |
-          #         |  # CONFIG_VMDK_IMAGES is not set        |
-          #         |  EOF                                    |
-          #          =========================================
-          #
-
-          # 
-          # 以下是一些提前准备好的一些插件选项.
-          # 直接取消注释相应代码块即可应用. 不要取消注释代码块上的汉字说明.
-          # 如果不需要代码块里的某一项配置, 只需要删除相应行.
-          #
-          # 如果需要其他插件, 请按照示例自行添加.
-          # 注意, 只需添加依赖链顶端的包. 如果你需要插件 A, 同时 A 依赖 B, 即只需要添加 A.
-          # 
-          # 无论你想要对固件进行怎样的定制, 都需要且只需要修改 EOF 回环内的内容.
-          # 
-
-          # 编译x64固件:
           cat >> .config <<EOF
+          CONFIG_TARGET_bcm53xx=y
           CONFIG_TARGET_bcm53xx_DEVICE_phicomm-k3=y
-          CONFIG_TARGET_PROFILE="DEVICE_phicomm-k3"
-          CONFIG_DEFAULT_k3screenctrl=y
-          CONFIG_DEFAULT_k3wifi=y
-          CONFIG_PACKAGE_k3wifi=y
-          CONFIG_PACKAGE_k3screenctrl=y
+          CONFIG_TARGET_BOARD="bcm53xx"
+          # CONFIG_FEED_luci is not set
+          # CONFIG_FEED_packages is not set
+          # CONFIG_FEED_routing is not set
+          # CONFIG_KERNEL_AIO is not set
+          # CONFIG_KERNEL_CGROUPS is not set
+          # CONFIG_KERNEL_FANOTIFY is not set
+          # CONFIG_KERNEL_FHANDLE is not set
+            CONFIG_LIBSODIUM_MINIMAL=y
+          # CONFIG_OPENSSL_OPTIMIZE_SPEED is not set
+            CONFIG_PACKAGE_libev=y
+            CONFIG_PACKAGE_libmbedtls=y
+            CONFIG_PACKAGE_libsodium=y
+            CONFIG_PACKAGE_libustream-openssl=y
+            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+            CONFIG_PACKAGE_luci-app-wifischedule=y
+            CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
+            CONFIG_PACKAGE_shadowsocks-libev-config=y
+            CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
+            CONFIG_PACKAGE_v2ray=y
+            CONFIG_PACKAGE_wifischedule=y
           EOF
 
           # 固件压缩:
@@ -207,7 +190,7 @@ jobs:
           find ./bin/targets/ -name "*efi*img*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*trx*" | xargs -i mv -f {} ./artifact/
-          find ./ -name "*.config*" | xargs -i mv -f {} ./artifact/
+          mv .config ./artifact/
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
