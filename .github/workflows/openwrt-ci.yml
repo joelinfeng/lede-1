@@ -54,9 +54,13 @@ jobs:
           rm -f ./.config*
           touch ./.config
           cat >> .config <<EOF
-          CONFIG_TARGET_bcm53xx=y
-          CONFIG_TARGET_bcm53xx_DEVICE_phicomm-k3=y
-          CONFIG_TARGET_BOARD="bcm53xx"
+          #CONFIG_TARGET_bcm53xx=y
+          #CONFIG_TARGET_bcm53xx_DEVICE_phicomm-k3=y
+          #CONFIG_TARGET_BOARD="bcm53xx"
+          ##k3
+          CONFIG_TARGET_ramips_mt7620=y
+          CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_psg1208=y
+          CONFIG_TARGET_PROFILE="DEVICE_phicomm_psg1208"
           # CONFIG_FEED_luci is not set
           # CONFIG_FEED_packages is not set
           # CONFIG_FEED_routing is not set
