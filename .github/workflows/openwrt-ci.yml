@@ -54,9 +54,9 @@ jobs:
           rm -f ./.config*
           touch ./.config
           cat >> .config <<EOF
-          CONFIG_TARGET_ramips_mt7620=y
-          CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_psg1208=y
-          CONFIG_TARGET_PROFILE="DEVICE_phicomm_psg1208"
+            CONFIG_TARGET_ramips_mt7620=y
+            CONFIG_TARGET_ramips_mt7620_DEVICE_phicomm_psg1208=y
+            CONFIG_TARGET_PROFILE="DEVICE_phicomm_psg1208"
           # CONFIG_FEED_luci is not set
           # CONFIG_FEED_packages is not set
           # CONFIG_FEED_routing is not set
@@ -173,14 +173,14 @@ jobs:
 
       - name: Make download
         run: |
-         # make download -j8
-         # find dl -size -1024c -exec ls -l {} \;
-         # find dl -size -1024c -exec rm -f {} \;
+          make download -j8
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
 
       - name: Compile firmware
         run: |
           echo -e "$(nproc) thread build."
-         # make -j$(nproc) V=s
+          make -j$(nproc) V=s
 
       - name: Assemble artifact
         run: |
