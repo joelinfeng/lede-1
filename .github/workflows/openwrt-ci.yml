@@ -72,12 +72,12 @@ jobs:
             CONFIG_PACKAGE_libustream-openssl=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
             CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-            CONFIG_PACKAGE_luci-app-wifischedule=y
-            CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
+          # CONFIG_PACKAGE_luci-app-wifischedule=y
+          # CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
           # CONFIG_PACKAGE_shadowsocks-libev-config=y
           # CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
-            CONFIG_PACKAGE_v2ray=y
-            CONFIG_PACKAGE_wifischedule=y
+          # CONFIG_PACKAGE_v2ray=y
+          # CONFIG_PACKAGE_wifischedule=y
           EOF
 
           # 固件压缩:
@@ -134,6 +134,9 @@ jobs:
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
           # CONFIG_PACKAGE_luci-app-ttyd=y
+            CONFIG_DEFAULT_luci-app-pptp-server=n
+            CONFIG_DEFAULT_luci-app-upnp=n
+            CONFIG_DEFAULT_luci-app-xlnetacc=n
           # CONFIG_PACKAGE_luci-app-v2ray-server=y
           # CONFIG_PACKAGE_luci-app-verysync=y
           # CONFIG_PACKAGE_luci-app-webadmin=y
