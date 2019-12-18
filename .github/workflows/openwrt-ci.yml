@@ -7,12 +7,12 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: OpenWrt-CI
+name: selfk3
 
 on:
   push:
-    branches: 
-      - master
+    #branches: 
+      #- master
   # schedule:
   #   - cron: 0 20 * * *
   # release:
@@ -72,6 +72,9 @@ jobs:
             CONFIG_PACKAGE_libustream-openssl=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
             CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+            CONFIG_DEFAULT_luci-app-pptp-server is not set
+            CONFIG_DEFAULT_luci-app-upnp is not set
+            CONFIG_DEFAULT_luci-app-xlnetacc is not set
           # CONFIG_PACKAGE_luci-app-wifischedule=y
           # CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
           # CONFIG_PACKAGE_shadowsocks-libev-config=y
