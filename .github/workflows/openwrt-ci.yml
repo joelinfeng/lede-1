@@ -4,7 +4,10 @@
 # Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
 # 
 # <https://github.com/KFERMercer/OpenWrt-CI>
-#name:selfk2
+
+
+name: n1
+
 
 on:
   push:
@@ -14,7 +17,7 @@ on:
   #   - cron: 0 20 * * *
   # release:
   #   types: [published]
-name:n1
+
 
 jobs:
 
