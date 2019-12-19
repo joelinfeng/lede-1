@@ -14,6 +14,7 @@ on:
   #   - cron: 0 20 * * *
   # release:
   #   types: [published]
+name:n1
 
 jobs:
 
@@ -49,9 +50,9 @@ jobs:
           rm -f ./.config*
           touch ./.config
           cat >> .config <<EOF
-            CONFIG_TARGET_ramips=y
-            CONFIG_TARGET_ramips_mt7620=y
-            CONFIG_TARGET_ramips_mt7620_DEVICE_psg1208=y
+          CONFIG_TARGET_armvirt=y
+          CONFIG_TARGET_armvirt_64=y
+          CONFIG_TARGET_armvirt_64_Default=y
           # CONFIG_FEED_luci is not set
           # CONFIG_FEED_packages is not set
           # CONFIG_FEED_routing is not set
