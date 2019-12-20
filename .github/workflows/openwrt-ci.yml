@@ -6,7 +6,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 
 
-name: n1_1
+name: x86_64_VMDK
 
 
 on:
@@ -53,9 +53,8 @@ jobs:
           rm -f ./.config*
           touch ./.config
           cat >> .config <<EOF
-          CONFIG_TARGET_armvirt=y
-          CONFIG_TARGET_armvirt_64=y
-          CONFIG_TARGET_armvirt_64_Default=y
+          CONFIG_KERNEL_PROC_VMCORE=y
+          CONFIG_VMDK_IMAGES=y
           # CONFIG_FEED_luci is not set
           # CONFIG_FEED_packages is not set
           # CONFIG_FEED_routing is not set
@@ -178,6 +177,7 @@ jobs:
           find ./bin/targets/ -name "*trx*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*bin*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*gz*" | xargs -i mv -f {} ./artifact/
+          find ./bin/targets/ -name "*vmdk*" | xargs -i mv -f {} ./artifact/
           mv .config ./artifact/
       - name: Upload artifact
         uses: actions/upload-artifact@master
