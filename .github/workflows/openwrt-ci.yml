@@ -1,13 +1,13 @@
+#
 # This is free software, lisence use MIT.
 # 
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
 # Copyright (C) 2019 KFERMercer <KFER.Mercer@gmail.com>
 # 
 # <https://github.com/KFERMercer/OpenWrt-CI>
+#
 
-
-name: x86_64_VMDK_1
-
+name: k3
 
 on:
   push:
@@ -17,7 +17,6 @@ on:
   #   - cron: 0 20 * * *
   # release:
   #   types: [published]
-
 
 jobs:
 
@@ -53,7 +52,9 @@ jobs:
           rm -f ./.config*
           touch ./.config
           cat >> .config <<EOF
-          CONFIG_VMDK_IMAGES=y
+          CONFIG_TARGET_bcm53xx=y
+          CONFIG_TARGET_bcm53xx_DEVICE_phicomm-k3=y
+          CONFIG_TARGET_BOARD="bcm53xx"
           # CONFIG_FEED_luci is not set
           # CONFIG_FEED_packages is not set
           # CONFIG_FEED_routing is not set
@@ -67,15 +68,14 @@ jobs:
             CONFIG_PACKAGE_libmbedtls=y
             CONFIG_PACKAGE_libsodium=y
             CONFIG_PACKAGE_libustream-openssl=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+            CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
             CONFIG_PACKAGE_luci-app-wifischedule=y
             CONFIG_PACKAGE_luci-i18n-wifischedule-zh-cn=y
-          # CONFIG_PACKAGE_shadowsocks-libev-config=y
-          # CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
-          # CONFIG_PACKAGE_v2ray=y
+            CONFIG_PACKAGE_shadowsocks-libev-config=y
+            CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
+            CONFIG_PACKAGE_v2ray=y
             CONFIG_PACKAGE_wifischedule=y
-          # CONFIG_DEFAULT_luci-app-pptp-server is not set
           EOF
           # 固件压缩:
           # cat >> .config <<EOF
@@ -121,10 +121,10 @@ jobs:
           # CONFIG_PACKAGE_luci-app-openvpn-server=y
           # CONFIG_PACKAGE_luci-app-qbittorrent=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-          # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
           # CONFIG_PACKAGE_luci-app-ttyd=y
           # CONFIG_PACKAGE_luci-app-v2ray-server=y
           # CONFIG_PACKAGE_luci-app-verysync=y
@@ -174,9 +174,6 @@ jobs:
           find ./bin/targets/ -name "*efi*img*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*trx*" | xargs -i mv -f {} ./artifact/
-          find ./bin/targets/ -name "*bin*" | xargs -i mv -f {} ./artifact/
-          find ./bin/targets/ -name "*gz*" | xargs -i mv -f {} ./artifact/
-          find ./bin/targets/ -name "*vmdk*" | xargs -i mv -f {} ./artifact/
           mv .config ./artifact/
       - name: Upload artifact
         uses: actions/upload-artifact@master
