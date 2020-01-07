@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: k320200107
+name: k320200108
 
 on:
   push:
@@ -173,7 +173,7 @@ jobs:
           find ./bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*efi*img*" | xargs -i mv -f {} ./artifact/
           find ./bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
-          find ./bin/targets/ -name "*trx*" | xargs -i mv -f {} ./artifact/
+          find ./bin/targets/ -name "*k3*" | xargs -i mv -f {} ./artifact/
           mv .config ./artifact/
       - name: Upload artifact
         uses: actions/upload-artifact@master
