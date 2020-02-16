@@ -16,7 +16,9 @@ on:
   # schedule:
   #   - cron: 0 20 * * *
   # release:
-  #   types: [published]
+  #   types: [published]  
+  watch:
+    types: [started]
 
 jobs:
 
